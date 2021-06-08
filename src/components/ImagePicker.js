@@ -11,7 +11,7 @@ import {
 import {launchCamera} from 'react-native-image-picker';
 import Colors from '../constants/Colors';
 
-const ImgPicker = () => {
+const ImgPicker = (props) => {
   const [pickedImage, setPickedImage] = useState();
   var granted = null;
   const takeImageHandler = async () => {
@@ -57,7 +57,9 @@ const ImgPicker = () => {
         console.log('User tapped custom button: ', response.customButton);
       } else {
         let source = {uri: response.assets[0].uri};
+        console.log(source)
         setPickedImage(response.assets[0].uri);
+        props.onImageTaken(response.assets[0].uri)
       }
     });
   };

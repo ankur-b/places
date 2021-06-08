@@ -16,6 +16,12 @@ target 'places' do
 
   pod 'react-native-image-picker', :path => '../node_modules/react-native-image-picker'
 
+  pod 'RNFS', :path => '../node_modules/react-native-fs'
+
+  pod 'RealmJS', :path => '../node_modules/realm'
+
+  pod 'RNSqlite2', :path => '../node_modules/react-native-sqlite-2'
+
   target 'placesTests' do
     inherit! :complete
     # Pods for testing
