@@ -25,7 +25,7 @@ const ImgPicker = (props) => {
     };
     try {
       granted = await PermissionsAndroid.request(
-        PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+        PermissionsAndroid.PERMISSIONS.CAMERA,
         {
           title: 'Location',
           message: 'Fine Location',

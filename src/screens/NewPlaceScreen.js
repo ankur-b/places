@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import Colors from '../constants/Colors';
 import ImagePicker from '../components/ImagePicker'
+import LocationPicker from '../components/LocationPicker'
 import {Context as PlacesContext} from '../context/PlacesContext'
 const NewPlaceScreen = props => {
   const [titleValue, setTitleValue] = useState();
@@ -34,6 +35,7 @@ const NewPlaceScreen = props => {
           value={titleValue}
         />
         <ImagePicker onImageTaken={imageTakenHandler}/>
+        <LocationPicker navigation={props.navigation}/>
         <Button
           title="Save Place"
           color={Colors.primary}

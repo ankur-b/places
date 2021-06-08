@@ -4,6 +4,8 @@ import android.app.Application;
 import android.content.Context;
 import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
+import com.airbnb.android.react.maps.MapsPackage;
+import com.github.douglasjunior.reactNativeGetLocation.ReactNativeGetLocationPackage;
 import dog.craftz.sqlite_2.RNSqlite2Package;
 import io.realm.react.RealmReactPackage;
 import com.rnfs.RNFSPackage;

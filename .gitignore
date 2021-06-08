@@ -28,7 +28,8 @@ build/
 .gradle
 local.properties
 *.iml
-
+AndroidManifest.xml
+API_KEY.js
 # node.js
 #
 node_modules/

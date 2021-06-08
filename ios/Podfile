@@ -22,6 +22,10 @@ target 'places' do
 
   pod 'RNSqlite2', :path => '../node_modules/react-native-sqlite-2'
 
+  pod 'ReactNativeGetLocation', :path => '../node_modules/react-native-get-location'
+
+  pod 'react-native-maps', :path => '../node_modules/react-native-maps'
+
   target 'placesTests' do
     inherit! :complete
     # Pods for testing

@@ -42,7 +42,7 @@ const PlacesNavigator = () => {
         <Stack.Screen name="NewPlace" component={NewPlaceScreen} options={()=>({
           title:"Add Place"
         })}/>
-        <Stack.Screen name="Map" component={MapScreen} />
+        <Stack.Screen name="Maps" component={MapScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
