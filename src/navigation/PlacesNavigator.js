@@ -1,5 +1,5 @@
 import React from 'react';
-import {Platform} from 'react-native';
+import {Platform, Button, Text, TouchableOpacity} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import PlacesListScreen from '../screens/PlacesListScreen';
@@ -31,18 +31,47 @@ const PlacesNavigator = () => {
                   title="Add Places"
                   iconName={Platform.OS === 'android' ? 'md-add' : 'ios-add'}
                   onPress={() => {
-                    navigation.navigate("NewPlace")
+                    navigation.navigate('NewPlace');
                   }}
                 />
               </HeaderButtons>
             ),
           })}
         />
-        <Stack.Screen name="PlaceDetail" component={PlaceDetailScreen} options={({route}) => ({title: route.params.placeTitle})}/>
-        <Stack.Screen name="NewPlace" component={NewPlaceScreen} options={()=>({
-          title:"Add Place"
-        })}/>
-        <Stack.Screen name="Maps" component={MapScreen} />
+        <Stack.Screen
+          name="PlaceDetail"
+          component={PlaceDetailScreen}
+          options={({route}) => ({title: route.params.placeTitle})}
+        />
+        <Stack.Screen
+          name="NewPlace"
+          component={NewPlaceScreen}
+          options={() => ({
+            title: 'Add Place',
+          })}
+        />
+        <Stack.Screen
+          name="Maps"
+          component={MapScreen}
+          options={props => ({
+            title: 'Map',
+            headerRight: () => (
+              <TouchableOpacity
+                style={{marginHorizontal: 20}}
+                onPress={() => {
+                  props.route.params.saveLocation();
+                }}>
+                <Text
+                  style={{
+                    fontSize: 16,
+                    color: Platform.OS === 'android' ? 'white' : Colors.primary,
+                  }}>
+                  Save
+                </Text>
+              </TouchableOpacity>
+            ),
+          })}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -9,7 +9,7 @@ const PlacesListScreen = props => {
   },[])
   return (
     <FlatList data={state.places} keyExtractor={item=>item.id} renderItem={itemData=>(
-      <PlaceItem image={itemData.item.imageUri} title={itemData.item.title} address={null} onSelect={()=>{
+      <PlaceItem image={itemData.item.imageUri} title={itemData.item.title} address={itemData.item.address} onSelect={()=>{
         props.navigation.navigate("PlaceDetail",{placeTitle:itemData.item.title,placeId:itemData.item.id})
       }}/>
     )}/>

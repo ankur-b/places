@@ -15,6 +15,11 @@ import Colors from '../constants/Colors';
 const LocationPicker = props => {
   const [isFetching, setIsFetching] = useState(false);
   const [pickedLocation, setPickedLocation] = useState(undefined);
+  let mapPickedLocation;
+  if(props.routes.params){
+    mapPickedLocation = props.routes.params.pickedLocation
+    props.onLocationPicked(mapPickedLocation)
+  }
   const getLocationHandler = async () => {
     try {
       setIsFetching(true);
@@ -23,15 +28,24 @@ const LocationPicker = props => {
         timeout: 15000,
       });
       setPickedLocation(location);
-      console.log(pickedLocation);
+      props.onLocationPicked({
+        latitude:location.latitude,
+        longitude:location.longitude
+      })
     } catch (err) {
       console.log(err);
     }
     setIsFetching(false);
   };
+ 
   const pickonMapHandler = () => {
-      props.navigation.navigate("Maps")
+    props.navigation.navigate('Maps');
   };
+  useEffect(()=>{
+    if(props.routes.params){
+        setPickedLocation(mapPickedLocation)
+    }
+  },[mapPickedLocation])
   return (
     <View style={styles.locationPicker}>
       {isFetching ? (
@@ -39,7 +53,9 @@ const LocationPicker = props => {
       ) : (
         [
           pickedLocation === undefined ? (
-            <Text>No location chosen yet!</Text>
+            <View style={styles.mapPreview}>
+              <Text>No location chosen yet!</Text>
+            </View>
           ) : (
             <MapView
               initialRegion={{
@@ -87,12 +103,14 @@ const styles = StyleSheet.create({
     height: 150,
     borderColor: '#ccc',
     borderWidth: 1,
+    justifyContent:"center",
+    alignItems:'center'
   },
-  actions:{
-      flexDirection:'row',
-      justifyContent:"space-between",
-      width:'100%'
-  }
+  actions: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: '100%',
+  },
 });
 
 export default LocationPicker;

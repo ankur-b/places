@@ -14,6 +14,7 @@ import {Context as PlacesContext} from '../context/PlacesContext'
 const NewPlaceScreen = props => {
   const [titleValue, setTitleValue] = useState();
   const [selectedImage,setSelectedImage] = useState()
+  const [selectedLocation,setSelectedLocation] = useState()
   const {state,addPlace} = useContext(PlacesContext)
   const titleChangeHandler = text => {
     setTitleValue(text);
@@ -21,8 +22,11 @@ const NewPlaceScreen = props => {
   const imageTakenHandler = imagePath => {
     setSelectedImage(imagePath)
   }
+  const locationPickedHandler=(location)=>{
+    setSelectedLocation(location)
+  }
   const savePlaceHandler = () => {
-    addPlace(titleValue,selectedImage)
+    addPlace(titleValue,selectedImage,selectedLocation)
     props.navigation.goBack()
   };
   return (
@@ -35,7 +39,7 @@ const NewPlaceScreen = props => {
           value={titleValue}
         />
         <ImagePicker onImageTaken={imageTakenHandler}/>
-        <LocationPicker navigation={props.navigation}/>
+        <LocationPicker onLocationPicked={locationPickedHandler} routes={props.route} navigation={props.navigation}/>
         <Button
           title="Save Place"
           color={Colors.primary}
